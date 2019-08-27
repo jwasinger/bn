@@ -1,4 +1,5 @@
 use std::cmp::Ordering;
+use std::fmt;
 use rand::Rng;
 
 #[cfg(feature = "rustc-serialize")]
@@ -7,9 +8,15 @@ use byteorder::{BigEndian, ByteOrder};
 
 /// 256-bit, stack allocated biginteger for use in prime field
 /// arithmetic.
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, Eq)]
 #[repr(C)]
 pub struct U256(pub [u128; 2]);
+
+impl fmt::Debug for U256 {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", format!("{:032x}{:032x}", self.0[0], self.0[1]).to_string())
+    }
+}
 
 impl From<[u64; 4]> for U256 {
     fn from(d: [u64; 4]) -> Self {

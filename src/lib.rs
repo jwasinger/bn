@@ -588,7 +588,7 @@ impl Mul<Fr> for G2 {
     }
 }
 
-#[derive(Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 #[repr(C)]
 pub struct Gt(fields::Fq12);
 
