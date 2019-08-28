@@ -754,6 +754,7 @@ impl AffineG<G2Params> {
     }
 
     pub fn precompute(&self) -> G2Precomp {
+        println!("start precompute");
         let mut r = self.to_jacobian();
 
         let mut coeffs = Vec::with_capacity(102);
@@ -807,7 +808,9 @@ impl G2 {
     }
 
     fn doubling_step_for_flipped_miller_loop(&mut self) -> EllCoeffs {
+        println!("starting fq2 mul");
         let a = (self.x * self.y).scale(two_inv());
+        //println!("bb {:?} * {:?} = {:?}", &self.x, &self.y, self.x * self.y);
         let b = self.y.squared();
         let c = self.z.squared();
         let d = c + c + c;
