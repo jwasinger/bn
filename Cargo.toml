@@ -22,6 +22,8 @@ byteorder = { version = "1.0", features = ["i128"] }
 crunchy = "0.2.1"
 lazy_static = "*"
 rustc-hex = "2"
+itertools = "0.6.5"
+hex = "0.3.2"
 
 [dev-dependencies.bincode]
 version = "0.6"

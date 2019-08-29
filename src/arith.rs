@@ -1,6 +1,12 @@
+extern crate itertools;
+extern crate hex;
+
 use std::cmp::Ordering;
 use std::fmt;
+
+use self::itertools::concat;
 use rand::Rng;
+use self::hex::encode;
 
 #[cfg(feature = "rustc-serialize")]
 use rustc_serialize::{Decodable, Decoder, Encodable, Encoder};
@@ -14,7 +20,14 @@ pub struct U256(pub [u128; 2]);
 
 impl fmt::Debug for U256 {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", format!("{:032x}{:032x}", self.0[0], self.0[1]).to_string())
+        let mut a: Vec<u8> = concat(vec![self.0[0].to_be_bytes().to_vec(), self.0[1].to_be_bytes().to_vec()]);
+        a.reverse();
+
+        let mut result = [0u128; 2];
+
+        BigEndian::read_u128_into(&a, &mut result);
+
+        write!(f, "{}", hex::encode(&a))
     }
 }
 
