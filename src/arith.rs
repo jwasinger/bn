@@ -20,8 +20,7 @@ pub struct U256(pub [u128; 2]);
 
 impl fmt::Debug for U256 {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let mut a: Vec<u8> = concat(vec![self.0[0].to_be_bytes().to_vec(), self.0[1].to_be_bytes().to_vec()]);
-        a.reverse();
+        let mut a: Vec<u8> = concat(vec![self.0[1].to_be_bytes().to_vec(), self.0[0].to_be_bytes().to_vec()]);
 
         let mut result = [0u128; 2];
 
