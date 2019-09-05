@@ -618,7 +618,7 @@ fn twist_mul_by_q_y() -> Fq2 {
     )
 }
 
-#[derive(PartialEq, Eq)]
+#[derive(PartialEq, Eq, Debug)]
 pub struct EllCoeffs {
     pub ell_0: Fq2,
     pub ell_vw: Fq2,
@@ -775,6 +775,11 @@ impl AffineG<G2Params> {
 
         coeffs.push(r.mixed_addition_step_for_flipped_miller_loop(&q1));
         coeffs.push(r.mixed_addition_step_for_flipped_miller_loop(&q2));
+
+        println!("G2 precompute coefficients are:");
+        for coeff in &coeffs {
+            println!("{:?}", &coeff);
+        }
 
         G2Precomp {
             q: *self,

@@ -165,7 +165,7 @@ impl Mul for Fq2 {
         //     Section 3 (Karatsuba)
 
         let aa = self.c0 * other.c0;
-        println!("{:?} * {:?} = {:?}", &self.c0, &other.c0, &aa);
+        //println!("{:?} * {:?} = {:?}", &self.c0, &other.c0, &aa);
 
         let bb = self.c1 * other.c1;
 
